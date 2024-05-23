@@ -19,7 +19,7 @@ export const API_ENDPOINTS = {
   calendar: '/api/calendar',
   auth: {
     me: '/api/auth/me',
-    login: '/api/auth/login',
+    login: '/api/Auth/Login',
     register: '/api/auth/register',
   },
   mail: {

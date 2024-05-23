@@ -27,8 +27,8 @@ import FormProvider, { RHFTextField } from 'src/components/hook-form';
 // ----------------------------------------------------------------------
 
 type FormValuesProps = {
-  email: string;
-  password: string;
+  username: string;
+  pwAccount: string;
 };
 
 export default function JwtLoginView() {
@@ -43,13 +43,13 @@ export default function JwtLoginView() {
   const password = useBoolean();
 
   const LoginSchema = Yup.object().shape({
-    email: Yup.string().required('Email is required').email('Email must be a valid email address'),
-    password: Yup.string().required('Password is required'),
+    username: Yup.string().required('Username is required'),
+    pwAccount: Yup.string().required('Password is required'),
   });
 
   const defaultValues = {
-    email: 'demo@minimals.cc',
-    password: 'demo1234',
+    username: 'huyhuy',
+    pwAccount: 'abc',
   };
 
   const methods = useForm<FormValuesProps>({
@@ -66,7 +66,7 @@ export default function JwtLoginView() {
   const onSubmit = useCallback(
     async (data: FormValuesProps) => {
       try {
-        await login?.(data.email, data.password);
+        await login?.(data.username, data.pwAccount);
 
         window.location.href = returnTo || PATH_AFTER_LOGIN;
       } catch (error) {
@@ -96,10 +96,10 @@ export default function JwtLoginView() {
     <Stack spacing={2.5}>
       {!!errorMsg && <Alert severity="error">{errorMsg}</Alert>}
 
-      <RHFTextField name="z" label="Email address" />
+      <RHFTextField name="username" label="username" />
 
       <RHFTextField
-        name="password"
+        name="pwAccount"
         label="Password"
         type={password.value ? 'text' : 'password'}
         InputProps={{
